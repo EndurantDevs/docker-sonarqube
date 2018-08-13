@@ -19,8 +19,8 @@ RUN powershell -command \
     Remove-Item "$Env:TEMP\sonarqube.zip" ; \
     Remove-Item $Env:SONARQUBE_HOME ; \
     $target_folder_name = Split-Path $Env:SONARQUBE_HOME -Leaf ; \
-    Rename-Item sonarqube-$Env:SONARQUBE_VERSION $target_folder_name
-
+    Rename-Item sonarqube-$Env:SONARQUBE_VERSION $target_folder_name ; \
+    Remove-Item $Env:SONARQUBE_HOME\data\*.*
 
 VOLUME $SONARQUBE_HOME\\data
 
