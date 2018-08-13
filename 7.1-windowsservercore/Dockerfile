@@ -23,7 +23,7 @@ RUN powershell -command \
     Rename-Item sonarqube-$Env:SONARQUBE_VERSION $target_folder_name
 
 
-VOLUME "$SONARQUBE_HOME\\data"
+VOLUME $SONARQUBE_HOME\\data
 
 EXPOSE 9000
 

@@ -6,9 +6,9 @@ docker kill sonar
 docker rm -f sonar
 
 $ErrorActionPreference = 'SilentlyContinue';
-Write-Host Starting tag: $env:TAG
-docker run --name sonar -d -p 9000:9000 $env:TAG
-Start-Sleep 100
+Write-Host Starting Testing: $env:TAG
+docker run --name sonar -d -p 9000:9000 dnikolayev/docker-sonarqube:$env:TAG
+Start-Sleep 20
 
 docker logs sonar
 
