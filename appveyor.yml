@@ -1,0 +1,35 @@
+version: 1.0.{build}
+image:
+- Visual Studio 2017
+
+environment:
+  matrix:
+    - TAG: 5.6.7-nanoserver
+    - TAG: 5.6.7-windowsservercore
+    - TAG: 6.7.5-nanoserver
+    - TAG: 6.7.5-windowsservercore
+    - TAG: 7.1-nanoserver
+    - TAG: 7.1-windowsservercore
+
+  DOCKER_USER:
+    secure: w2Rmx1xX/Sr8G9FYlbZdiA==
+  DOCKER_PASS:
+    secure: 1naXTmc0kovqpqIFM7CW9g==
+
+matrix:
+  allow_failures:
+    - TAG: 5.6.7-nanoserver
+    - TAG: 5.6.7-windowsservercore
+    - TAG: 6.7.5-nanoserver
+    - TAG: 6.7.5-windowsservercore
+    - TAG: 7.1-nanoserver
+    - TAG: 7.1-windowsservercore
+
+build_script:
+  - ps: ./build/build.ps1
+
+test_script:
+  - ps: ./build/test.ps1
+
+deploy_script:
+  - ps: ./build/deploy.ps1
