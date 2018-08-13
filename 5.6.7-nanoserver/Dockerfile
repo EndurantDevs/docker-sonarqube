@@ -28,6 +28,6 @@ EXPOSE 9000
 
 WORKDIR $SONARQUBE_HOME
 
-COPY sonarqube.cmd "$SONARQUBE_HOME\\bin"
+COPY sonarqube.cmd $SONARQUBE_HOME\\bin
 
-ENTRYPOINT ["$SONARQUBE_HOME\\bin\\sonarqube.cmd"]
+ENTRYPOINT [".\\bin\\sonarqube.cmd"]

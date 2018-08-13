@@ -14,6 +14,7 @@ RUN powershell -command \
     New-Item -ItemType Directory -Force -Path $Env:SONARQUBE_HOME ; \
     $parent_dir = Split-Path -Path $Env:SONARQUBE_HOME -Parent ; \
     Set-Location -Path $parent_dir ; \
+    [Net.ServicePointManager]::SecurityProtocol = 'Ssl3', 'Tls', 'Tls11', 'Tls12'; \
     Invoke-WebRequest "https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-$Env:SONARQUBE_VERSION.zip" -OutFile "$Env:TEMP\sonarqube.zip"; \
     Expand-Archive -Path "$Env:TEMP\sonarqube.zip" -DestinationPath $parent_dir ; \
     Remove-Item "$Env:TEMP\sonarqube.zip" ; \
@@ -28,6 +29,6 @@ EXPOSE 9000
 
 WORKDIR $SONARQUBE_HOME
 
-COPY sonarqube.cmd "$SONARQUBE_HOME\\bin"
+COPY sonarqube.cmd $SONARQUBE_HOME\\bin
 
-ENTRYPOINT ["$SONARQUBE_HOME\\bin\\sonarqube.cmd"]
+ENTRYPOINT [".\\bin\\sonarqube.cmd"]
